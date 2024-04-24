@@ -84,7 +84,7 @@ st.write("This app detects wildfires in satellite images and calculates CO2 emis
 
 st.sidebar.header("Upload Image")
 
-model, session = load_trained_model("./temp_model.h5")
+model, session = load_trained_model(".\temp_model.h5")
 K.set_session(session)
 
 
