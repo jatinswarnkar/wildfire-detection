@@ -1,8 +1,61 @@
-body {
-    background-color: #eee;
+/* Main content background and font settings */
+.main {
+    background-color: #F3F4F6; /* Light gray background */
+    color: #374151; /* Dark gray text color */
+    font-family: 'Arial', sans-serif; /* Default font */
 }
 
-.fullScreenFrame > div {
-    display: flex;
-    justify-content: center;
+/* Sidebar content styling */
+.sidebar .sidebar-content {
+    background-color: #374151; /* Dark gray background */
+    color: #F3F4F6; /* Light text color */
+}
+
+/* Title styling */
+h1 {
+    font-family: 'Arial', sans-serif;
+    color: #1F2937; /* Darker gray for titles */
+    font-weight: bold;
+}
+
+/* General paragraph and div text styling */
+p, div {
+    font-family: 'Arial', sans-serif;
+    color: #00ad1a;
+}
+
+/* Styling for Streamlit buttons */
+.stButton > button {
+    background-color: #4F46E5; /* Indigo blue for a modern look */
+    color: white;
+    border: none;
+    border-radius: 4px; /* Soft rounded corners */
+    padding: 0.5em 1em; /* Padding for comfort */
+    cursor: pointer; /* Change cursor on hover */
+    transition: background-color 0.3s; /* Smooth transition on hover */
+}
+
+/* Button hover effect */
+.stButton > button:hover {
+    background-color: #4338CA; /* Darker indigo on hover */
+}
+
+/* Styling for Streamlit sidebar text input and select boxes */
+.stSidebar .stTextInput, .stSidebar .stSelectbox {
+    background-color: white;
+    border: 1px solid #D1D5DB; /* Light gray border */
+    color: #374151;
+    padding: 0.5em;
+    border-radius: 4px; /* Rounded corners */
+}
+
+/* Styling for Streamlit spinner */
+.stSpinner {
+    color: #4F46E5; /* Indigo spinner */
+}
+
+/* Styling for Streamlit images */
+.stImage {
+    border: 1px solid #E5E7EB; /* Light gray border */
+    border-radius: 8px; /* Rounded corners */
 }

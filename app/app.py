@@ -13,20 +13,21 @@ with open("style.css") as f:
 
 
 st.title("Wild Fire Detection App")
+st.write("This app detects wildfires in satellite images and calculates CO2 emissions from burnt areas.")
 
-st.sidebar.markdown("** App Status **")
+st.sidebar.header("Upload Image")
 
 model, session = load_trained_model("temp_model.h5")
 K.set_session(session)
 
 
-st.sidebar.markdown('Please upload a raw satellite image')
+st.sidebar.header('Please upload a raw satellite image')
 uploaded_file = st.sidebar.file_uploader("Upload png file", type=["png"])
 
 
 if uploaded_file is not None:
     uploaded_image = Image.open(uploaded_file)
-    st.markdown("** Original Raw Image: **")
+    st.write("### Original Raw Image")
     st.image(uploaded_image, width = 500)
     
     ### Preprocess the raw image
@@ -49,30 +50,28 @@ if uploaded_file is not None:
 
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #### Show the picture
-    st.markdown("** The Predicted Probability is **: ")
-    plt.imshow(output_pred)
+    st.write("### Predicted Probability")
+    plt.imshow(output_pred, cmap='hot')
     st.pyplot()
 
 
     #threshold = st.sidebar.slider("Threshold", 0, 1, 0.25)
     preds_t = (preds > 0.25).astype(np.uint8)
     output_mask = conv_float_int(combine_image(preds_t, row_num, col_num, original_width, original_height, remove_ghost=False)[:,:,0])
-    st.markdown("** The Predicted Mask is **: ")
-    plt.imshow(output_mask)
+    st.write("### Predicted Mask")
+    plt.imshow(output_mask, cmap='gray')
     st.pyplot()
     #plt.imshow(output_mask)
    
-    st.sidebar.markdown("** CO2 Emission Calculator **")
-    forest_type = st.sidebar.selectbox("Please select the type of forest: ", ('Tropical Forest', 'Temperate Forest', 'Boreal Forest', 'Shrublands', 'Grasslands'))
-    resolution = st.sidebar.text_input("Please enter the image resolution value: ", '10')
+    st.sidebar.header("CO2 Emission Calculator")
+    forest_type = st.sidebar.selectbox("Select the type of forest: ", ('Tropical Forest', 'Temperate Forest', 'Boreal Forest', 'Shrublands', 'Grasslands'))
+    resolution = st.sidebar.text_input("Enter the image resolution value: ", '10')
     
     area, biomass_burnt, equal_days = burn_area(output_mask = output_mask, resolution = float(resolution), forest_type = forest_type)
-    st.sidebar.markdown('The total burnt area is:')
-    st.sidebar.text("{0:.2f}".format(area/1e6) + ' km^2')
-    st.sidebar.markdown('The total CO2 emitted is:')
-    st.sidebar.text("{0:.2f}".format(biomass_burnt/1e6) + ' tons')
-    st.sidebar.markdown("This is equivalent to:")
-    st.sidebar.text("{0:.2f}".format(equal_days) + " days of Califorlia's daily electricity power emission")
+    st.sidebar.write("### Burnt Area and CO2 Emissions")
+    st.sidebar.write(f"Total Burnt Area: {area / 1e6:.2f} km²")
+    st.sidebar.write(f"Total CO2 Emitted: {biomass_burnt / 1e6:.2f} tons")
+    st.sidebar.write(f"Equivalent to: {equal_days:.2f} days of California's daily electricity emissions")
 
 
 
