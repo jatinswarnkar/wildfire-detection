@@ -5,7 +5,6 @@ from source import preprocess_input_image, batch_predict, conv_float_int, combin
 import numpy as np
 from keras import backend as K
 from tensorflow.python.lib.io import file_io
-import boto3
 from keras.models import load_model
 
 with open("style.css") as f:
