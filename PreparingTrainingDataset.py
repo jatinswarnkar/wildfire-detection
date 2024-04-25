@@ -1,32 +1,11 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-Created on Sun May 10 18:51:03 2020
-
-@author: zhijuanzhang
-"""
 
 from PIL import Image
 import os
 import numpy as np
 import cv2
 
-###############################################################################
-# ########              ##            ###########            ##               #
-# #       #            #  #                ##               #  #              #
-# #        #          #    #               ##              #    #             #
-# #         #        #      #              ##             #      #            #
-# #         #       ##########             ##            ##########           # 
-# #        #       #          #            ##           #          #          #
-# #       #       #            #           ##          #            #         #
-# # ######     ###              ###        ##       ###              ###      #
-###############################################################################
-
-
-
-###############################################################################
 #Uniform Mask Size to be the same as Image Size
-###############################################################################
+
 def scale_image(input_image_path,input_label_path,
                 output_label_path,
                 width=None,
@@ -44,9 +23,9 @@ def scale_image(input_image_path,input_label_path,
     print('The scaled label size is {wide} wide x {height} '
           'high'.format(wide=width, height=height))
 
-###############################################################################
+
 #Uniform All Images to be the same size - 720 * 480
-###############################################################################
+
 def add_margin(pil_img, top, right, bottom, left, color):
     width, height = pil_img.size
     new_width = width + right + left
@@ -80,9 +59,7 @@ def scale_image_WithPadding(input_image_path,
     print((w2, h2))
     original_image.save(output_image_path)
 
-############################################################################### 
 #Binarize Mask DataSize
-###############################################################################
 def digitize_image(input_image_path,
                 output_image_path,
                 width=None,
@@ -102,14 +79,12 @@ def digitize_image(input_image_path,
     
     im.save(output_image_path)  
 
-###############################################################################
 # Example - Uniform Mask size to be the same as the raw image
 # Mask is manually added contour in PPT. The size of saved png is different 
 # from the raw image
-###############################################################################
-lst_1  = "/Users/zhijuanzhang/Documents/ML Hackson/google-images-download-master/images/All/RawImage"
-lst_2 = "/Users/zhijuanzhang/Documents/ML Hackson/google-images-download-master/images/All/RawLabel"
-lst_3 = "/Users/zhijuanzhang/Documents/ML Hackson/google-images-download-master/images/All/ResizeLabel"
+lst_1  = "/Users/Documents/ML Hackson/google-images-download-master/images/All/RawImage"
+lst_2 = "/Users/Documents/ML Hackson/google-images-download-master/images/All/RawLabel"
+lst_3 = "/Users/Documents/ML Hackson/google-images-download-master/images/All/ResizeLabel"
     
 if __name__ == '__main__':  
         #determine the most common image size
