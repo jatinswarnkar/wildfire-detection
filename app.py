@@ -50,7 +50,7 @@ if uploaded_file is not None:
     st.set_option('deprecation.showPyplotGlobalUse', False)
     #### Show the picture
     st.write("### Predicted Probability")
-    plt.imshow(output_pred, cmap='hot')
+    plt.imshow(output_pred)
     st.pyplot()
 
 
